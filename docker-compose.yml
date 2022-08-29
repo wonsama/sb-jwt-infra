@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  database:
+    container_name: sb-postgres
+    image: postgres:latest
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: iwpdevdb
+      POSTGRES_USER: iwpdevusr
+      POSTGRES_PASSWORD: iwpdevusr!
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data
+
+  cache:
+    container_name: sb-redis
+    image: redis:alpine
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis/data:/data
